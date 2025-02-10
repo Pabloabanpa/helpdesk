@@ -1,15 +1,16 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\TicketController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\PermisoController;
 
-Route::get('/', function () {
-    return Inertia::render('Home');
-})->name('home');
+Route::get('roles', [RolController::class, 'index']);
+Route::post('roles', [RolController::class, 'store']);
+Route::get('roles/{idrol}', [RolController::class, 'show']);
+Route::put('roles/{idrol}', [RolController::class, 'update']);
+Route::delete('roles/{idrol}', [RolController::class, 'destroy']);
 
-Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-Route::resource('tickets', TicketController::class)->middleware('auth');
+Route::get('permisos', [PermisoController::class, 'index']);
+Route::post('permisos', [PermisoController::class, 'store']);
+Route::get('permisos/{idpermiso}', [PermisoController::class, 'show']);
+Route::put('permisos/{idpermiso}', [PermisoController::class, 'update']);
+Route::delete('permisos/{idpermiso}', [PermisoController::class, 'destroy']);
